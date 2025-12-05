@@ -18,3 +18,8 @@ pub fn read_lines(day: u8, example_data: bool) -> Vec<String> {
         .map(|line| line.to_string())
         .collect()
 }
+
+pub fn read_csv_into_lines(day: u8, example_data: bool) -> Vec<String> {
+    let csv_line = &read_lines(day, example_data)[0];
+    return csv_line.split(',').map(|s| s.trim().to_string()).collect();
+}
