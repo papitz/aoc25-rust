@@ -1,0 +1,20 @@
+use std::fs;
+
+// 'pub' makes this function available to your binaries
+pub fn read_lines(day: u8, example_data: bool) -> Vec<String> {
+    // 1. Format the filename. 
+    // {:02} pads the number with zeros (e.g., 1 becomes "01")
+    let prefix = if example_data {"ex_"} else {""};
+
+    let file_path = format!("./input/{day}/{prefix}input.txt");
+
+    // 2. Read the file
+    let contents = fs::read_to_string(&file_path)
+        .expect(&format!("Should have been able to read the file: {}", file_path));
+
+    // 3. Convert to a list of strings
+    contents
+        .lines()
+        .map(|line| line.to_string())
+        .collect()
+}
