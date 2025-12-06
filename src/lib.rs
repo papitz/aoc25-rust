@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, ops::RangeInclusive};
 
 // 'pub' makes this function available to your binaries
 pub fn read_lines(day: u8, example_data: bool) -> Vec<String> {
@@ -36,4 +36,12 @@ pub fn get_neighbor_indices(
                 .filter(|&(row, col)| row < max_row && col < max_col)
         })
     })
+}
+
+pub fn parse_iclusive_range(input: &str) -> RangeInclusive<i64> {
+    let parts = input.split("-");
+    let from_to: Vec<i64> = parts
+        .map(|num_str| num_str.parse::<i64>().unwrap())
+        .collect();
+    return from_to[0]..=from_to[1];
 }
